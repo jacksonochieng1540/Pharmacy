@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Pharmacy Portal</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background-color: #f4f9f4;
+    }
+    header {
+      background-color: #4CAF50;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+    nav {
+      background-color: #388E3C;
+      display: flex;
+      justify-content: space-around;
+      padding: 0.5rem;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .container {
+      padding: 2rem;
+    }
+    .card {
+      background-color: white;
+      border-radius: 8px;
+      padding: 1rem;
+      margin: 1rem 0;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .card h3 {
+      margin-top: 0;
+      color: #2e7d32;
+    }
+    button {
+      background-color: #43A047;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background-color: #2e7d32;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Welcome to MediCare Pharmacy</h1>
+  <p>Your trusted healthcare partner</p>
+</header>
+
+<nav>
+  <a href="#drugs">Available Drugs</a>
+  <a href="#order">Place Order</a>
+  <a href="#prescription">Submit Prescription</a>
+</nav>
+
+<div class="container">
+
+  <section class="card" id="drugs">
+    <h3>Available Drugs</h3>
+    <ul id="drugList">
+      <!-- JS will populate -->
+    </ul>
+  </section>
+
+  <section class="card" id="order">
+    <h3>Place an Order</h3>
+    <form id="orderForm">
+      <label>Name: <input type="text" name="name" required></label><br><br>
+      <label>Drug Name: <input type="text" name="drug" required></label><br><br>
+      <label>Quantity: <input type="number" name="quantity" required></label><br><br>
+      <label>Address: <textarea name="address" required></textarea></label><br><br>
+      <button type="submit">Submit Order</button>
+    </form>
+  </section>
+
+  <section class="card" id="prescription">
+    <h3>Submit Prescription</h3>
+    <form id="prescriptionForm" enctype="multipart/form-data">
+      <label>Name: <input type="text" name="client_name" required></label><br><br>
+      <label>Prescription Note: <textarea name="note" required></textarea></label><br><br>
+      <label>Upload File: <input type="file" name="file"></label><br><br>
+      <button type="submit">Upload Prescription</button>
+    </form>
+  </section>
+
+</div>
+
+<footer>
+  &copy; 2025 MediCare Pharmacy. All rights reserved.
+</footer>
+
+<script>
+  // Example: dynamically load drugs (simulate API call)
+  const drugs = [
+    { name: "Amoxicillin", description: "Antibiotic", price: "KSh 500" },
+    { name: "Paracetamol", description: "Pain Reliever", price: "KSh 150" },
+    { name: "Ibuprofen", description: "Anti-inflammatory", price: "KSh 200" }
+  ];
+
+  const drugList = document.getElementById('drugList');
+  drugs.forEach(drug => {
+    const li = document.createElement('li');
+    li.innerHTML = `<strong>${drug.name}</strong> - ${drug.description} - <em>${drug.price}</em>`;
+    drugList.appendChild(li);
+  });
+
+  document.getElementById('orderForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    alert('Order submitted! Thank you.');
+    this.reset();
+  });
+
+  document.getElementById('prescriptionForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    alert('Prescription uploaded!');
+    this.reset();
+  });
+</script>
+
+</body>
+</html>
